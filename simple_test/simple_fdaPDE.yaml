@@ -1,0 +1,45 @@
+interpolation_script_directory: D:\\R\\Bathymetry
+working_directory: D:\\R\\Bathymetry\\exp1_mesh
+coordinate_reference_system: +proj=utm +zone=10 +ellps=GRS80 +datum=NAD83 +units=m +no_defs
+input_gr3_file: example1_out.gr3
+mesh_prefix: output
+target_pts_fname: target_pts.csv
+target_raster_resolution: 2.0
+output_file_prefix: output
+observation_points:
+- file_name: bathy_pts.csv
+- file_name: shoreline_pts.csv	
+#specify 3 types for smooth_type: isotropic_stationary, anisotropic_stationary, anisotropic_nonstationary
+#"Isotropic Stationary" only needs inputs for lambda.
+#smooth_type: isotropic_stationary
+#lambda: 
+# - 0.1
+# - 1.0
+# - 10.0
+# - 100.0
+#"Anisotropic Stationary" needs inputs for lambda, anisrotropic ratio, and anisotropic direction.
+#smooth_type: anisotropic_stationary
+#aniso_ratio:
+#- 20
+# - 40
+#- 80
+#lambda:
+#- 10.0
+#- 100.0
+#aniso_direction: 105.5
+#"Anisotropic Nonstationary" needs inputs for (1)case_id, (2)spatial distriction of diffusion coefficient, (3)spatial #distribtion of anisrotropic ratio, and (4) spatial distribtion of anisotropic direction. Three raster inputs are required
+#to provide spatial information on diffusion coefficient, anisotropic ratio, and anisotropic direction.
+#Diffusion coefficient and anisotropic ratio can be constant.
+smooth_type: anisotropic_nonstationary
+case_id: exp1_mesh1
+direction_raster: angle_exp1_mesh.tif
+constant_aniso_ratio: FALSE
+aniso_ratio:
+- 20
+- 80
+aniso_ratio_raster: exp1_aniso_ratio_ras.tif
+constant_diff_coeff: FALSE
+diff_coeff:
+- 10.0
+- 100.0
+diff_coeff_raster: exp1_diff_coeff_ras.tif
